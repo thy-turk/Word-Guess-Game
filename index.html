@@ -95,12 +95,31 @@
                 return toGuess;
             }
 
+            //Function to capture user input
             document.onkeyup = function (event) {
                 var letter = event.key;
                 var lettersGuessed = letter;
                 var i;
                 var letterPos = letterInWord(lettersGuessed);
                 console.log(letter);
+
+
+                //if else comparing letter guessed with the current word
+                if (letterPos.length) {
+                    for(i = 0; i < letterPos.length; i ++) {
+                        currentWord[letterPos[i]] = lettersGuessed;
+                    }
+                    document.getElementById("active-word").innerHTML = currentWord.join(" ");
+                } else {
+                    
+                    document.getElementById("letters-guessed").innerHTML += lettersGuessed + " ";
+                    guessesLeft--;
+                    document.getElementById("guesses-remain").innerHTML = guessesLeft;
+                }
+
+                if (letter.includes(lettersGuessed)) {
+                        return;
+                    }
 
             
             }

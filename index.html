@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman Game</title>
+        <link rel="stylesheet" type="text/css" href="assets/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <div class= "container">
+            <p>Press any key to get started!</p>
+            <br />
+
+            <p>Wins: </p>
+
+            <div class="num-of-wins"></div>
+            <br />
+
+            <div class="active-word"></div>
+
+            <p>Nuumber of guesses remaining: </p>
+            <br /> 
+
+            <div class="guesses-remain"></div>
+            <br />
+
+            <p>Letters already Guessed: </p>
+            <br />
+
+            <div class="letters-guessed"></div>
+
+
+
+        </div>     
+        
+        <script type="text/javascript">
+
+                // Array for the word bank of possible answers
+                var wordAnswers = ["vapor", "wave", "test", "keyboard"];
+
+                // Math function to randomly pick a word from the wordbank
+                var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
+
+                var progressWord = [];
+                var i;
+                var progressWords = document.getElementById("active-word");
+                
+                for (i = 0; i < answer.length; i++) {
+                    progressWord.push("__");
+                    
+                    progressWords.appendChild(progressWord);
+                    
+                    //progressWord.push("__");
+                    //progressWord.toString()
+                    //document.getElementById("active-word").innerHTML = progressWord.join(" ");
+                }
+
+                //document.getElementById("active-word").innerHTML = progressWord.join(" ");
+
+        
+        
+        
+        </script>
+
+
+
+    </body>
+
+</html>

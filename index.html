@@ -4,7 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Hangman Game</title>
+        <link rel="stylesheet" type="text/css" href="assets/reset.css">
         <link rel="stylesheet" type="text/css" href="assets/style.css">
+        <script type="text/javascript" src="assets/javascript/game.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
 
     </head>
@@ -13,11 +15,11 @@
 
         <img src="assets/Images/hangmantext.png" alt="Hangman" id="hangman-text">
 
+        <h1>Press any key to get started!</h1>
+        <br />
+        
         <div class= "container">
             
-            <h1>Press any key to get started!</h1>
-            <br />
-
             <p>Wins: </p>
 
             <p><span id="num-of-wins"></span></p>
@@ -46,37 +48,65 @@
         
         <script type="text/javascript">
 
-                // Array for the word bank of possible answers
-                var wordAnswers = ["vapor", "wave", "test", "keyboard"];
+            var currentWord = [];
+            var answerWord = [];
+            
+            var i;
 
-                // Math function to randomly pick a word from the wordbank
-                var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
+        
+            // Array for the word bank of possible answers
+            var wordAnswers = ["vapor", "wave", "test", "keyboard"];
 
-                // Variable that counts the number of guesses left
-                var guessesLeft = 15;
-                document.getElementById("guesses-remain").innerHTML = guessesLeft;
+            // Math function to randomly pick a word from the wordbank
+            var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
 
-                // Variable that counts the number of wins
-                var wins = 0;
-                document.getElementById("num-of-wins").innerHTML = wins;
+            // Variable that counts the number of guesses left
+            var guessesLeft = 15;
+            document.getElementById("guesses-remain").innerHTML = guessesLeft;
+
+            // Variable that counts the number of wins
+            var wins = 0;
+            document.getElementById("num-of-wins").innerHTML = wins;
                 
-                var currentWord = [];
-                var i;
-                
-                // Loop that creates empty spaces for the words
+            // Loop that creates empty spaces for the words
+            for (i = 0; i < answer.length; i++) {
+                currentWord.push("__");
+            }
+            document.getElementById("active-word").innerHTML = currentWord.join(" ");
+
+            //Function that will evaluate the position of a letter in the word
+            function letterInWord(letter) {
+                var letterPos = new Array();
                 for (i = 0; i < answer.length; i++) {
-                    currentWord.push("__");
+                    if (answer[i] === letter)
+                    letterPos.push(i);
                 }
-                document.getElementById("active-word").innerHTML = currentWord.join(" ");
+                return letterPos;
+            }   
 
-                
+            //Return letters that arent guessed still
+            function lettersToGuess() {
+                var i; 
+                var toGuess = 0;
+                for (i in currentWord) {
+                    if (currentWord[i] === "__")
+                        toGuess++;
+                }
+                return toGuess;
+            }
+
+            document.onkeyup = function (event) {
+                var letter = event.key;
+                var lettersGuessed = letter;
+                var i;
+                var letterPos = letterInWord(lettersGuessed);
+                console.log(letter);
+
+            
+            }
 
 
 
-
-        
-        
-        
         </script> 
 
 

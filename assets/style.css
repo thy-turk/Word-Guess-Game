@@ -10,6 +10,24 @@ p {
     color: white;
     font-family: 'Permanent Marker', cursive;
     font-size: 18px;
+    
 
+    
+}
+
+h1 {
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    border-bottom-style: solid;
+    border-color: white;
+    
+}
+
+#hangman-text {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
     
 }

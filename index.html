@@ -10,29 +10,37 @@
     </head>
 
     <body>
+
+        <img src="assets/Images/hangmantext.png" alt="Hangman" id="hangman-text">
+
         <div class= "container">
-            <p>Press any key to get started!</p>
+            
+            <h1>Press any key to get started!</h1>
             <br />
 
             <p>Wins: </p>
 
-            <div class="num-of-wins"></div>
+            <p><span id="num-of-wins"></span></p>
             <br />
 
-            <div class="active-word"></div>
+            <p>Current Word: </p>
+            <br />
 
-            <p>Nuumber of guesses remaining: </p>
+            <p><span id="active-word"></span></p>
+
+            <p>Number of guesses remaining: </p>
             <br /> 
 
-            <div class="guesses-remain"></div>
+            <p><span id="guesses-remain"></span></p>
             <br />
 
             <p>Letters already Guessed: </p>
             <br />
 
-            <div class="letters-guessed"></div>
+            <p><span id="letters-guessed"></span></p>
 
-
+            
+           
 
         </div>     
         
@@ -44,26 +52,32 @@
                 // Math function to randomly pick a word from the wordbank
                 var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
 
-                var progressWord = [];
-                var i;
-                var progressWords = document.getElementById("active-word");
+                // Variable that counts the number of guesses left
+                var guessesLeft = 15;
+                document.getElementById("guesses-remain").innerHTML = guessesLeft;
+
+                // Variable that counts the number of wins
+                var wins = 0;
+                document.getElementById("num-of-wins").innerHTML = wins;
                 
+                var currentWord = [];
+                var i;
+                
+                // Loop that creates empty spaces for the words
                 for (i = 0; i < answer.length; i++) {
-                    progressWord.push("__");
-                    
-                    progressWords.appendChild(progressWord);
-                    
-                    //progressWord.push("__");
-                    //progressWord.toString()
-                    //document.getElementById("active-word").innerHTML = progressWord.join(" ");
+                    currentWord.push("__");
                 }
+                document.getElementById("active-word").innerHTML = currentWord.join(" ");
 
-                //document.getElementById("active-word").innerHTML = progressWord.join(" ");
+                
+
+
+
 
         
         
         
-        </script>
+        </script> 
 
 
 

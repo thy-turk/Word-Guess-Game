@@ -13,3 +13,5 @@ https://thy-turk.github.io/Word-Guess-Game/
 
 ## Tools Used:
 * Google Fonts
+* Html/CSS
+* javascript

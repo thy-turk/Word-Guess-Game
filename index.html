@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+   <!-- <head>
         <meta charset="UTF-8">
         <title>Hangman Game</title>
         <link rel="stylesheet" type="text/css" href="assets/reset.css">
@@ -157,6 +157,182 @@
             }
         </script>
 
+    </body> -->
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Hangman Game</title>
+        <link rel="stylesheet" type="text/css" href="assets/reset.css">
+        <link rel="stylesheet" type="text/css" href="assets/style.css">
+        <script type="text/javascript" src="assets/javascript/game.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    </head>
+    
+    <body>
+    
+        <img src="assets/Images/hangmantext.png" alt="Hangman" id="hangman-text">
+    
+        <h1>Press any key to get started!</h1>
+        <br />
+    
+        <div class= "container">
+    
+            <p>Wins: </p>
+    
+            <p><span id="num-of-wins"></span></p>
+            <br />
+    
+            <p>Current Word: </p>
+            <br />
+    
+            <p><span id="active-word"></span></p>
+    
+            <p>Number of guesses remaining: </p>
+            <br /> 
+    
+            <p><span id="guesses-remain"></span></p>
+            <br />
+    
+            <p>Letters already Guessed: </p>
+            <br />
+    
+            <p><span id="letters-guessed"></span></p>
+    
+    
+    
+    
+        </div>     
+    
+        <script type="text/javascript">
+            var currentWord = [];
+            var answerWord = [];
+            // Making an array to put the letters that we've already seen into.
+            var pastLetters = [];
+            var lettersReset = "";
+            var i;
+            var guessesLeft = 15;
+    
+    
+            // Array for the word bank of possible answers
+            var wordAnswers = ["vapor", "wave", "keyboard", "javascript", "coding", "practice", "technology", "hangman", "retro", "internet", "lamborgini", "ferrari", "cellphone", "computer", "headphones", "speakers", "vinyl", "record"];
+    
+            // Math function to randomly pick a word from the wordbank
+            var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
+    
+            // Variable that counts the number of guesses left
+    
+            document.getElementById("guesses-remain").innerHTML = guessesLeft;
+    
+            // Variable that counts the number of wins
+            var wins = 0;
+            document.getElementById("num-of-wins").innerHTML = wins;
+    
+            // Loop that creates empty spaces for the words
+            for (i = 0; i < answer.length; i++) {
+                currentWord.push("_");
+            }
+            document.getElementById("active-word").innerHTML = currentWord.join(" ");
+    
+            //Function that will evaluate the position of a letter in the word
+            function wordLetters(letter) {
+                var letterPos = new Array();
+                for (i = 0; i < answer.length; i++) {
+                    if (answer[i] === letter)
+                    letterPos.push(i);
+                }
+                return letterPos;
+            }   
+    
+            //Return letters that arent guessed still
+            function lettersToGuess() {
+                var i; 
+                var toGuess = 0;
+                for (i in currentWord) {
+                    if (currentWord[i] === "_")
+                        toGuess++;
+                }
+                return toGuess;
+            }
+    
+            //Function to capture user input
+            document.onkeyup = function (event) {
+                // Checking to make sure that the key pressed is actually a letter.
+                if ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode >= 97 && event.keyCode <= 122){
+                    var letter = event.key.toLowerCase();
+                    var lettersGuessed = letter;
+                    var i;
+                    var letterPos = wordLetters(lettersGuessed);
+    
+    
+                    //if else comparing letter guessed with the current word
+                    if (letterPos.length) {
+                        for(i = 0; i < letterPos.length; i++) {
+                            currentWord[letterPos[i]] = lettersGuessed;
+                        }
+                        document.getElementById("active-word").innerHTML = currentWord.join(" ");
+                    } else {
+                        // If the letter has already been seen don't do it again.
+                        if (!pastLetters.includes(letter)) {
+                            pastLetters.push(letter);
+                            document.getElementById("letters-guessed").innerHTML += lettersGuessed + " ";
+                            guessesLeft--;
+                            document.getElementById("guesses-remain").innerHTML = guessesLeft;
+                        }
+                    }
+    
+                    // If user correctly guesses word the game is reset
+                    if (lettersToGuess() == 0) {
+                        guessesLeft = 15;
+                        document.getElementById("guesses-remain").innerHTML = guessesLeft;
+    
+                        document.getElementById("letters-guessed").innerHTML = lettersReset;
+    
+                        answer = wordAnswers[Math.floor(Math.random() * wordAnswers.length)];
+    
+                        currentWord = [];
+                        pastLetters = [];
+                        for (i = 0; i < answer.length; i++) {
+                        currentWord.push("_");
+                        }
+                        document.getElementById("active-word").innerHTML = currentWord.join(" ");
+    
+                        wins++;
+                        document.getElementById("num-of-wins").innerHTML = wins;
+    
+                    }
+    
+                    //Resets game if out of guesses
+                    if (guessesLeft === 0) {
+                        guessesLeft = 15;
+                        document.getElementById("guesses-remain").innerHTML = guessesLeft;
+    
+                        document.getElementById("letters-guessed").innerHTML = lettersReset;
+    
+                        answer = wordAnswers[Math.floor(Math.random() * wordAnswers.length)];
+    
+                        currentWord = [];
+                        pastLetters = [];
+                        for (i = 0; i < answer.length; i++) {
+                        currentWord.push("_");
+                        }
+                        document.getElementById("active-word").innerHTML = currentWord.join(" ");
+                    }
+    
+    
+    
+    
+                }
+    
+            }
+    
+    
+    
+    
+        </script>
+    
+    
+    
     </body>
 
 </html>

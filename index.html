@@ -75,7 +75,7 @@
             document.getElementById("active-word").innerHTML = currentWord.join(" ");
 
             //Function that will evaluate the position of a letter in the word
-            function letterInWord(letter) {
+            function wordLetters(letter) {
                 var letterPos = new Array();
                 for (i = 0; i < answer.length; i++) {
                     if (answer[i] === letter)
@@ -100,7 +100,7 @@
                 var letter = event.key;
                 var lettersGuessed = letter;
                 var i;
-                var letterPos = letterInWord(lettersGuessed);
+                var letterPos = wordLetters(lettersGuessed);
                 console.log(letter);
 
 
@@ -158,7 +158,7 @@
 
 
 
-
+                
             
             }
 

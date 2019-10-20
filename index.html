@@ -47,22 +47,21 @@
         </div>     
         
         <script type="text/javascript">
-
             var currentWord = [];
             var answerWord = [];
             var lettersReset = "";
             var i;
+            var guessesLeft = 15;
 
-        
+
             // Array for the word bank of possible answers
-            var wordAnswers = ["vapor", "wave", "test", "keyboard"];
+            var wordAnswers = ["vapor", "wave", "keyboard", "javascript", "coding", "practice", "technology", "hangman", "retro", "internet", "lamborgini", "ferrari", "cellphone", "computer", "headphones", "speakers", "vinyl", "record", "turntable"];
 
             // Math function to randomly pick a word from the wordbank
             var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
 
-            
             // Variable that counts the number of guesses left
-            var guessesLeft = 15;
+
             document.getElementById("guesses-remain").innerHTML = guessesLeft;
 
             // Variable that counts the number of wins
@@ -155,19 +154,8 @@
                     }
                     document.getElementById("active-word").innerHTML = currentWord.join(" ");
                 }
-
-
-
-
-                
-            
-            } 
-
-
-
+            }
         </script>
-
-
 
     </body>
 

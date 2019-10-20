@@ -60,6 +60,7 @@
             // Math function to randomly pick a word from the wordbank
             var answer = wordAnswers[Math.floor(Math.random()*wordAnswers.length)];
 
+            
             // Variable that counts the number of guesses left
             var guessesLeft = 15;
             document.getElementById("guesses-remain").innerHTML = guessesLeft;
@@ -70,7 +71,7 @@
                 
             // Loop that creates empty spaces for the words
             for (i = 0; i < answer.length; i++) {
-                currentWord.push("__");
+                currentWord.push("_");
             }
             document.getElementById("active-word").innerHTML = currentWord.join(" ");
 
@@ -89,7 +90,7 @@
                 var i; 
                 var toGuess = 0;
                 for (i in currentWord) {
-                    if (currentWord[i] === "__")
+                    if (currentWord[i] === "_")
                         toGuess++;
                 }
                 return toGuess;
@@ -97,7 +98,7 @@
 
             //Function to capture user input
             document.onkeyup = function (event) {
-                var letter = event.key;
+                var letter = event.key.toLowerCase();
                 var lettersGuessed = letter;
                 var i;
                 var letterPos = wordLetters(lettersGuessed);
@@ -130,7 +131,7 @@
 
                     currentWord = [];
                     for (i = 0; i < answer.length; i++) {
-                    currentWord.push("__");
+                    currentWord.push("_");
                     }
                     document.getElementById("active-word").innerHTML = currentWord.join(" ");
                     
@@ -150,7 +151,7 @@
 
                     currentWord = [];
                     for (i = 0; i < answer.length; i++) {
-                    currentWord.push("__");
+                    currentWord.push("_");
                     }
                     document.getElementById("active-word").innerHTML = currentWord.join(" ");
                 }
@@ -160,11 +161,11 @@
 
                 
             
-            }
+            } 
 
 
 
-        </script> 
+        </script>
 
 
 

@@ -9,8 +9,8 @@ html {
 p {
     color: white;
     font-family: 'Permanent Marker', cursive;
-    font-size: 18px;
-    
+    font-size: 28px;
+    text-align: center;
 
     
 }
@@ -33,5 +33,5 @@ h1 {
 }
 
 .container {
-    margin-left: 2%;
+    
 }

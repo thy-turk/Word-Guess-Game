@@ -15,3 +15,6 @@ https://thy-turk.github.io/Word-Guess-Game/
 * Google Fonts
 * Html/CSS
 * javascript
+
+## Difficulties Faced
+It was difficult for me to get the empty spaces to show correctly as well as having the game reset properly once the player had won or lost. I spent hours looking at my code and for help online before I found a solution. Now it works great!
